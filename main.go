@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	indent := flag.Int64("indent", 2, "specify indent count")
+	indent := flag.Int("indent", 2, "specify indent count")
 
 	obj := ParseJson(os.Stdin)
 	fmt.Println(JsonStringify(obj, *indent))
@@ -30,10 +30,8 @@ func ParseJson(input io.Reader) interface{} {
 	return obj
 }
 
-func JsonStringify(obj interface{}, indent int64) string {
-	spaces := make([]string, indent+1)
-
-	data, err := json.MarshalIndent(obj, "", strings.Join(spaces, " "))
+func JsonStringify(obj interface{}, indent int) string {
+	data, err := json.MarshalIndent(obj, "", strings.Repeat(" ", indent))
 	if err != nil {
 		return ""
 	}
