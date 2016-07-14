@@ -13,11 +13,11 @@ import (
 func main() {
 	indent := flag.Int("indent", 2, "specify indent count")
 
-	obj := ParseJson(os.Stdin)
-	fmt.Println(JsonStringify(obj, *indent))
+	obj := parseJSON(os.Stdin)
+	fmt.Println(jsonStringify(obj, *indent))
 }
 
-func ParseJson(input io.Reader) interface{} {
+func parseJSON(input io.Reader) interface{} {
 	data, err := ioutil.ReadAll(input)
 	if err != nil {
 		return nil
@@ -30,7 +30,7 @@ func ParseJson(input io.Reader) interface{} {
 	return obj
 }
 
-func JsonStringify(obj interface{}, indent int) string {
+func jsonStringify(obj interface{}, indent int) string {
 	data, err := json.MarshalIndent(obj, "", strings.Repeat(" ", indent))
 	if err != nil {
 		return ""
