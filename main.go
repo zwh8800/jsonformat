@@ -12,6 +12,7 @@ import (
 
 func main() {
 	indent := flag.Int("indent", 2, "specify indent count")
+	flag.Parse()
 
 	obj := parseJSON(os.Stdin)
 	fmt.Println(jsonStringify(obj, *indent))
