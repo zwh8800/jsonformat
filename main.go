@@ -23,7 +23,7 @@ func parseJSON(input io.Reader) interface{} {
 	if err != nil {
 		return nil
 	}
-	var obj map[string]interface{}
+	var obj interface{}
 	if err := json.Unmarshal(data, &obj); err != nil {
 		return nil
 	}
